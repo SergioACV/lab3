@@ -13,6 +13,14 @@ def create_product():
     ProductService.create_product(name, description)
     return redirect(url_for('products.index'))
 
+@product_blueprint.route('/products/update', methods=['POST'])
+def update_product():
+    data = request.form
+    name = data.get('name')
+    description = data.get('description')
+    ProductService.update_product(name, description)
+    return redirect(url_for('products.index'))
+
 @product_blueprint.route('/')
 def index():
     return render_template('index.html')

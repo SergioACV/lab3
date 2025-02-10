@@ -6,3 +6,10 @@ class ProductRepository:
         db.session.add(product)
         db.session.commit()
         return product
+
+    @staticmethod
+    def update_product(name, description):
+        product = Products.query.filter_by(name=name).first()
+        product.description = description
+        db.session.commit()
+        return product
